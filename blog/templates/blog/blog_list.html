@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %} 
+Blog with Abhishek
+{% endblock %}
+{% block content %} 
+<h1 class='text-center  mt-4'>Welcome to django project</h1>
+ <a  class="btn btn-primary" href="{% url 'blog_create' %}">Create a blog</a>
+ <div class="container row gap-3">
+{% for blog in blogs %}
+<div class="card" style="width: 18rem;">
+    <img src="{{blog.image.url}}" class="card-img-top" alt="My Image">
+    <div class="card-body">
+      <h5 class="card-title">{{ blog.user.username }}</h5>
+      <p class="card-text">{{ blog.text }}</p>
+      {% if blog.user == user%}
+      <a href="{% url 'blog_edit' blog.id %}" class="btn btn-primary">Edit</a>
+      <a href="{% url 'blog_delete' blog.id %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+ </div>
+
+{% endblock %}

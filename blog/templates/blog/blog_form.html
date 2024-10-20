@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %} 
+Blog with Abhishek
+{% endblock %}
+{% block content %} 
+<h1 class='text-center  mt-4'>Welcome to django project</h1>
+<h2>{% if form.instance.pk %}
+    Edit blog 
+    {% else %}
+    Create blog
+    {% endif %}</h2>
+    <form method="POST" enctype="multipart/form-data" class="form">
+      {% csrf_token %}
+       {{form.as_p}}
+       <button class="btn btn-warning" type="submit">submit</button>
+    </form>
+    <a href="{% url  'blog_list' %}" class="btn btn-primary">Back to blog list</a>
+
+{% endblock %}
+</title>
